@@ -10,10 +10,13 @@ public class EncerradorDeLeilao {
 
 	private final RepositorioDeLeiloes dao;
 
+	private final Carteiro carteiro;
+
 	private int total = 0;
 
-	public EncerradorDeLeilao(RepositorioDeLeiloes dao) {
+	public EncerradorDeLeilao(RepositorioDeLeiloes dao, Carteiro carteiro) {
 		this.dao = dao;
+		this.carteiro = carteiro;
 	}
 
 	public void encerra() {
@@ -21,11 +24,17 @@ public class EncerradorDeLeilao {
 		List<Leilao> todosLeiloesCorrentes = dao.correntes();
 
 		for (Leilao leilao : todosLeiloesCorrentes) {
-			if (comecouSemanaPassada(leilao)) {
-				leilao.encerra();
-				total++;
-				dao.atualiza(leilao);
+			try {
+				if (comecouSemanaPassada(leilao)) {
+					leilao.encerra();
+					total++;
+					dao.atualiza(leilao);
+					carteiro.envia(leilao);
+				}
+			}catch (RuntimeException e){
+
 			}
+
 		}
 	}
 

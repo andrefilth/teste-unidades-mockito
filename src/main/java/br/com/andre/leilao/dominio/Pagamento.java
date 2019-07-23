@@ -4,8 +4,8 @@ import java.util.Calendar;
 
 public class Pagamento {
 
-	private double valor;
-	private Calendar data;
+	private final double valor;
+	private final Calendar data;
 
 	public Pagamento(double valor, Calendar data) {
 		this.valor = valor;
