@@ -4,6 +4,8 @@
     <bytecodeTargetLevel>
       <module name="demo.main" target="11" />
       <module name="demo.test" target="11" />
+      <module name="teste-unidades-mockito.main" target="1.8" />
+      <module name="teste-unidades-mockito.test" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
